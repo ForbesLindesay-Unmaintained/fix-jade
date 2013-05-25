@@ -1,6 +1,8 @@
 # fix-jade
 
-Fix jade by removing reliance on deprecated features
+Fix jade by removing reliance on deprecated features:
+
+- [implicitly text-only `script` and `style` blocks](https://github.com/visionmedia/jade/pull/1036)
 
 ## Installation
 
