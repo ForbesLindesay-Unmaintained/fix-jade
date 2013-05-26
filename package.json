@@ -15,5 +15,12 @@
     "readable-stream": "~1.0.2",
     "gethub": "~1.0.2",
     "rimraf": "~2.1.4"
+  },
+  "subdomain": "ForbesLindesay-fix-jade",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": "0.8.x"
   }
 }
