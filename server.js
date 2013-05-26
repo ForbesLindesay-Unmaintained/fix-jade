@@ -1,7 +1,7 @@
 var github = require('./lib/github')
 
 github.watchers('visionmedia', 'jade')
-  .pipe(github.processUsers('bbnnt', function (err) {
+  .pipe(github.processUsers('olistik', function (err) {
     if (err) console.log(err.stack || err.message || err)
     else console.log('done')
   }))

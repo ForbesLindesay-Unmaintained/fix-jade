@@ -54,7 +54,13 @@ function processDir(dir, log) {
   readdir(dir)
     .forEach(function (sub) {
       var path = join(dir, sub)
-      if (stat(path).isDirectory()) {
+      var isDirectory = null
+      try {
+        isDirectory = stat(path).isDirectory()
+      } catch (ex) {
+        return
+      }
+      if (isDirectory) {
         res = res.concat(processDir(path, log))
       } else if (/\.jade$/.test(path)) {
         var replacements = processFile(path)
