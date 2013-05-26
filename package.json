@@ -1,6 +1,6 @@
 {
   "name": "fix-jade",
-  "version": "1.0.0-4",
+  "version": "1.0.0-6",
   "description": "Fix reliance on deprecated features of jade",
   "bin": "bin/cmd.js",
   "repository": {

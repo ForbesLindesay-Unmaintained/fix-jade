@@ -16,7 +16,7 @@ function fixString(src) {
     src = src.replace(/^([ \t]*style\b.*)$/gm, function (_, line) {
       if (!/\.$/.test(line)) {
         replacements++
-        return line + '.'
+        return line.replace(/ +$/, '') + '.'
       } else {
         return line
       }
@@ -24,9 +24,9 @@ function fixString(src) {
   }
   if (/^([ \t]*script\b.*)$/gm.test(src)) {
     src = src.replace(/^([ \t]*script\b.*)$/gm, function (_, line) {
-      if (!/\.$/.test(line) && !/src=/.test(line) && (!/type=/.test(line) || /type=("|')text\/javascript('|")/.test(line))) {
+      if (!/\.$/.test(line) && !/src *= */.test(line) && (!/type *= */.test(line) || /type *= *("|')text\/javascript('|")/.test(line))) {
         replacements++
-        return line + '.'
+        return line.replace(/ +$/, '') + '.'
       } else {
         return line
       }
