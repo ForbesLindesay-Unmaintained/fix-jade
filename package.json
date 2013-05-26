@@ -2,7 +2,7 @@
   "name": "fix-jade",
   "version": "1.0.0",
   "description": "Fix reliance on deprecated features of jade",
-  "bin": "index.js",
+  "bin": "bin/cmd.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/ForbesLindesay/fix-jade.git"
@@ -10,6 +10,10 @@
   "author": "ForbesLindesay",
   "license": "MIT",
   "dependencies": {
-    "bash-color": "0.0.3"
+    "bash-color": "0.0.3",
+    "github": "~0.1.8",
+    "readable-stream": "~1.0.2",
+    "gethub": "~1.0.2",
+    "rimraf": "~2.1.4"
   }
 }

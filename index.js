@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 var fs = require('fs')
 var read = fs.readFileSync
 var write = fs.writeFileSync
@@ -9,26 +7,10 @@ var path = require('path')
 var join = path.join
 var relative = path.relative
 
-var color = require('bash-color')
-var purple = color.purple
-var green = color.green
+module.exports = (exports = fixString)
 
-processDir(process.cwd())
-
-function processDir(dir) {
-  readdir(dir)
-    .forEach(function (sub) {
-      var path = join(dir, sub)
-      if (stat(path).isDirectory()) {
-        processDir(path)
-      } else if (/\.jade$/.test(path)) {
-        processFile(path)
-      }
-    })
-}
-
-function processFile(file) {
-  var src = read(file).toString()
+exports.fixString = fixString
+function fixString(src) {
   var replacements = 0
   if (/^([ \t]*style\b.*)$/gm.test(src)) {
     src = src.replace(/^([ \t]*style\b.*)$/gm, function (_, line) {
@@ -50,11 +32,36 @@ function processFile(file) {
       }
     })
   }
-  var name = relative(process.cwd(), file).replace(/\\/g, '/')
+  return {src: src, replacements: replacements}
+}
+
+exports.processFile = processFile
+function processFile(file) {
+  var src = read(file).toString()
+  var fix = fixString(src)
+  src = fix.src
+  var replacements = fix.replacements
   if (replacements) {
     write(file, src)
-    console.log(purple('fixed') + ' "' + name + '" ' + purple('by making ' + replacements + ' replacement' + (replacements === 1 ? '' : 's')))
-  } else {
-    console.log(green('skipped') + ' "' + name + '" ' + green('as it was already correct.'))
   }
+  return replacements
 }
+
+exports.processDir = processDir
+function processDir(dir, log) {
+  log = log || function () {}
+  var res = []
+  readdir(dir)
+    .forEach(function (sub) {
+      var path = join(dir, sub)
+      if (stat(path).isDirectory()) {
+        res = res.concat(processDir(path, log))
+      } else if (/\.jade$/.test(path)) {
+        var replacements = processFile(path)
+        log(path, replacements)
+        res.push({path: path, replacements: replacements})
+      }
+    })
+  return res
+}
+
