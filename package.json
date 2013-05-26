@@ -1,6 +1,6 @@
 {
   "name": "fix-jade",
-  "version": "1.0.0-3",
+  "version": "1.0.0-4",
   "description": "Fix reliance on deprecated features of jade",
   "bin": "bin/cmd.js",
   "repository": {
@@ -14,7 +14,8 @@
     "github": "~0.1.8",
     "readable-stream": "~1.0.2",
     "gethub": "~1.0.2",
-    "rimraf": "~2.1.4"
+    "rimraf": "~2.1.4",
+    "mongojs": "~0.7.5"
   },
   "subdomain": "ForbesLindesay-fix-jade",
   "scripts": {
