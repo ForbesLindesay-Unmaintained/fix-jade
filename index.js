@@ -27,7 +27,7 @@ function fixString(src) {
     return leadin + tagname + line + undotted ? '.' : '' + indent
   }
   
-  src = src.replace(/^([ \t]*)(style|script)([^\n]*)(\n$1[ \t]+)/gm, dotImplicitTextOnlyBlock)
+  src = src.replace(/^([ \t]*)(style|script)([^\n]*)(\n\1[ \t]+)/gm, dotImplicitTextOnlyBlock)
   
   return {src: src, replacements: replacements}
 }
