@@ -12,26 +12,23 @@ module.exports = (exports = fixString)
 exports.fixString = fixString
 function fixString(src) {
   var replacements = 0
-  if (/^([ \t]*style\b.*)$/gm.test(src)) {
-    src = src.replace(/^([ \t]*style\b.*)$/gm, function (_, line) {
-      if (!/\.$/.test(line)) {
-        replacements++
-        return line.replace(/ +$/, '') + '.'
-      } else {
-        return line
-      }
-    })
+  
+  function dotImplicitTextOnlyBlock(_, leadin, tagname, line, indent) {
+    // Flag for if this block should have a dot appended:
+    var undotted =
+      // if this textOnly tag contains a block and doesn't end with a dot
+      !/\.$/.test(line)
+      //and isn't a script tag with a non-javascript type attribute
+      //(a special case where script tags were already not implicitly textOnly)
+      && tagname != 'script'
+      || (/type *= */.test(line) && /type *= *("|')text\/javascript('|")/.test(line)))
+    
+    if (undotted) replacements++
+    return leadin + tagname + line + undotted ? '.' : '' + indent
   }
-  if (/^([ \t]*script\b.*)$/gm.test(src)) {
-    src = src.replace(/^([ \t]*script\b.*)$/gm, function (_, line) {
-      if (!/\.$/.test(line) && !/src *= */.test(line) && (!/type *= */.test(line) || /type *= *("|')text\/javascript('|")/.test(line))) {
-        replacements++
-        return line.replace(/ +$/, '') + '.'
-      } else {
-        return line
-      }
-    })
-  }
+  
+  src = src.replace(/^([ \t]*)(style|script)(\S*)(\s*\n$1[ \t]+)/gm, dotImplicitTextOnlyBlock)
+  
   return {src: src, replacements: replacements}
 }
 
