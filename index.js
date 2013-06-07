@@ -21,7 +21,8 @@ function fixString(src) {
       //and isn't a script tag with a non-javascript type attribute
       //(a special case where script tags were already not implicitly textOnly)
       && tagname != 'script'
-      || (/type *= */.test(line) && /type *= *("|')text\/javascript('|")/.test(line)))
+      || !(/type *= */.test(line))
+      || /type *= *("|')text\/javascript('|")/.test(line)
     
     if (undotted) replacements++
     return leadin + tagname + line + undotted ? '.' : '' + indent
