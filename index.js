@@ -20,15 +20,15 @@ function fixString(src) {
       !/\.$/.test(line)
       //and isn't a script tag with a non-javascript type attribute
       //(a special case where script tags were already not implicitly textOnly)
-      && tagname != 'script'
+      && (tagname != 'script'
       || !(/type *= */.test(line))
-      || /type *= *("|')text\/javascript('|")/.test(line)
+      || /type *= *("|')text\/javascript('|")/.test(line))
     
     if (undotted) replacements++
-    return leadin + tagname + line + undotted ? '.' : '' + indent
+    return leadin + tagname + line + (undotted ? '.' : '') + indent
   }
   
-  src = src.replace(/^([ \t]*)(style|script)([^\n]*)(\n\1[ \t]+)/gm, dotImplicitTextOnlyBlock)
+  src = src.replace(/^([ \t]*)(style|script)([^\r\n]*)(\r?\n\1[ \t]+)/gm, dotImplicitTextOnlyBlock)
   
   return {src: src, replacements: replacements}
 }
