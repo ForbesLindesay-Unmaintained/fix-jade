@@ -10,18 +10,6 @@
   "author": "ForbesLindesay",
   "license": "MIT",
   "dependencies": {
-    "bash-color": "0.0.3",
-    "github": "~0.1.8",
-    "readable-stream": "~1.0.2",
-    "gethub": "~1.0.2",
-    "rimraf": "~2.1.4",
-    "mongojs": "~0.7.5"
-  },
-  "subdomain": "ForbesLindesay-fix-jade",
-  "scripts": {
-    "start": "node server.js"
-  },
-  "engines": {
-    "node": "0.8.x"
+    "bash-color": "0.0.3"
   }
 }
