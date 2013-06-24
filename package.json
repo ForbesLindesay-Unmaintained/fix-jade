@@ -11,5 +11,11 @@
   "license": "MIT",
   "dependencies": {
     "bash-color": "0.0.3"
+  },
+  "devDependencies": {
+    "linify": "~1.0.1"
+  },
+  "scripts": {
+    "prepublish": "linify transform ./bin/"
   }
 }
