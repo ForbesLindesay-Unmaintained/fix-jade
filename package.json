@@ -2,14 +2,21 @@
   "name": "fix-jade",
   "version": "1.0.1",
   "description": "Fix reliance on deprecated features of jade",
-  "bin": "bin/cmd.js",
+  "bin": {
+    "fix-jade": "bin/cmd.js"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/ForbesLindesay/fix-jade.git"
   },
-  "author": "ForbesLindesay",
+  "author": {
+    "name": "ForbesLindesay"
+  },
   "license": "MIT",
   "dependencies": {
     "bash-color": "0.0.3"
-  }
+  },
+  "readme": "# fix-jade\r\n\r\nFix jade by removing reliance on deprecated features:\r\n\r\n- [implicitly text-only `script` and `style` blocks](https://github.com/visionmedia/jade/pull/1036)\r\n\r\n## Installation\r\n\r\n    npm install fix-jade -g\r\n\r\n## Usage\r\n\r\nFix jade files in the current directory:\r\n\r\n    fix-jade\r\n\r\n## Uninstallation\r\n\r\n    npm uninstall fix-jade -g\r\n\r\n## License\r\n\r\nMIT\r\n",
+  "_id": "fix-jade@1.0.1",
+  "_from": "fix-jade"
 }
