@@ -10,7 +10,7 @@
   "author": "ForbesLindesay",
   "license": "MIT",
   "dependencies": {
-    "bash-color": "0.0.3"
+    "bash-color": "0.0.4"
   },
   "devDependencies": {
     "linify": "~1.0.1"
